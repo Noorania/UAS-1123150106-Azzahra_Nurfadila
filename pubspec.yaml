@@ -20,6 +20,10 @@ dependencies:
   # Navigation
   go_router: ^14.8.1
 
+  # Deep Links 
+  app_links: ^6.3.2
+  url_launcher: ^6.3.0
+
   # Network
   dio: ^5.7.0
   pretty_dio_logger: ^1.4.0
