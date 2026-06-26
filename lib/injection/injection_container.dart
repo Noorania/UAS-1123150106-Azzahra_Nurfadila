@@ -26,6 +26,7 @@ import '../presentation/blocs/account/account_bloc.dart';
 import '../presentation/blocs/auth/auth_bloc.dart';
 import '../presentation/blocs/auth/otp_bloc.dart';
 import '../presentation/blocs/payment/payment_bloc.dart';
+import '../core/constants/app_constants.dart';
 
 final sl = GetIt.instance;
 
@@ -69,6 +70,16 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<PaymentRepository>(
     () => PaymentRepositoryImpl(sl()),
+  );
+
+   // Baca token tersimpan ← BARU
+  final savedToken = await secureStorage.read(
+    key: AppConstants.kJwtToken,
+  );
+
+  // Core
+  sl.registerLazySingleton<ApiClient>(
+    () => ApiClient(token: savedToken), // ← token diinjeksi
   );
 
   // Use Cases — Auth

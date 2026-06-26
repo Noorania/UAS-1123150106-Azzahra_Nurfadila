@@ -39,6 +39,7 @@ class _PinPageState extends State<PinPage> {
         description: flow['note'] as String? ?? 'Transfer',
         otpCode: '000000', // In production: get from actual 2FA
         otpType: AppConstants.otpTypeTotp,
+        
       ));
     } else if (kind == 'topup') {
       context.read<PaymentBloc>().add(PaymentTopupRequested(
