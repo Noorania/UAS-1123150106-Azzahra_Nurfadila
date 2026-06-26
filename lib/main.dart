@@ -6,6 +6,7 @@ import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'core/utils/app_bloc_observer.dart';
 import 'injection/injection_container.dart' as di;
+import 'core/services/deeplink_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,8 @@ void main() async {
 
   // Initialize dependency injection
   await di.init();
+  
+  DeeplinkService(AppRouter.router).init(); // ← BARU
 
   // Set preferred orientations
   await SystemChrome.setPreferredOrientations([
