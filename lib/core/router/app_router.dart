@@ -27,11 +27,12 @@ import '../../presentation/pages/transfer/transfer_amount_page.dart';
 import '../../presentation/pages/transfer/transfer_confirm_page.dart';
 import '../../presentation/pages/transfer/transfer_page.dart';
 import '../../presentation/widgets/app_tab_bar.dart';
+import '../../presentation/pages/payment/payment_deeplink_page.dart';
 
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
-  static GoRouter get router => GoRouter(
+  static final GoRouter get router => GoRouter(
         navigatorKey: _rootNavigatorKey,
         initialLocation: '/',
         routes: [
@@ -76,6 +77,14 @@ class AppRouter {
               return _withOtp(TwoFANotifPage(mode: extra?['mode'] as String? ?? 'login'));
             },
           ),
+
+          GoRoute(path: '/merchant', builder: (_, __) => _withPayment(const MerchantCheckoutPage())),
+          // ← BARU: route deeplink pembayaran merchant
+          GoRoute(
+            path: '/pay',
+            builder: (_, state) => _withPayment(PaymentDeeplinkPage(data: state.extra)),
+          ),
+
           // Main app with tabs
           ShellRoute(
             builder: (context, state, child) {
@@ -186,6 +195,7 @@ class AppRouter {
       BlocProvider(create: (_) => sl<AuthBloc>()),
       BlocProvider(create: (_) => sl<AccountBloc>()),
       BlocProvider(create: (_) => sl<PaymentBloc>()),
+      BlocProvider(create: (_) => sl<OtpBloc>()), // ← BARU
     ], child: child);
   }
 }
