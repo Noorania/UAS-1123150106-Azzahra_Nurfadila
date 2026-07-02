@@ -90,3 +90,69 @@ Pastikan konfigurasi koneksi Redis di `be-emoney/config/` mengarah ke `localhost
 
 ---
 
+## Setup — Redis (Docker)
+
+Redis dipakai oleh **be-emoney** (misalnya untuk penyimpanan OTP/TOTP sementara).
+
+```powershell
+docker run --name redis-emoney -p 6379:6379 -d redis
+```
+
+Verifikasi container berjalan:
+```powershell
+docker ps
+```
+
+Pastikan konfigurasi koneksi Redis di `be-emoney/config/` mengarah ke `localhost:6379` (atau sesuaikan bila memakai `docker-compose.yml`).
+
+---
+
+## Menjalankan Backend
+
+### gin-firebase-backend (Jrb Jewelry)
+
+```powershell
+cd gin-firebase-backend
+go mod tidy
+go run main.go
+```
+
+Berjalan di **port `8081`**. Pastikan MySQL sudah aktif dan konfigurasi koneksi database di `config/` sudah sesuai.
+
+Struktur folder:
+```
+gin-firebase-backend/
+├── config/         # koneksi database & Firebase Admin SDK
+├── handlers/        # HTTP handler (menerima request)
+├── middleware/       # auth middleware, dsb
+├── models/          # struct data (Order, Product, CartItem, ...)
+├── repositories/      # akses database (query murni)
+├── routes/          # deklarasi endpoint
+├── seed/           # data awal / dummy
+└── services/         # business logic
+```
+
+### be-emoney (Emoney)
+
+```powershell
+cd be-emoney
+go mod tidy
+go run main.go
+```
+
+Pastikan Redis dan MySQL sudah aktif sebelum menjalankan.
+
+Struktur folder:
+```
+be-emoney/
+├── config/     # koneksi database, Redis, Firebase Admin SDK
+├── database/    # migration / schema
+├── handlers/    # HTTP handler
+├── middleware/   # auth middleware, dsb
+├── models/     # struct data (Account, Transaction, ...)
+├── postman/     # collection Postman untuk testing manual
+├── routes/     # deklarasi endpoint
+└── services/    # business logic (topup, transfer, OTP, TOTP)
+```
+
+
