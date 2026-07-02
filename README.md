@@ -1,6 +1,6 @@
-# Jrb Jewelry × Dompet Kampus (Emoney)
+# Jrb Jewelry × DompetQU (Emoney)
 
-Sistem e-commerce perhiasan (**Jrb Jewelry**) yang terintegrasi dengan dompet digital (**Dompet Kampus / Emoney**) lewat mekanisme **deeplink** untuk alur pembayaran antar-aplikasi. Terdiri dari 2 aplikasi Flutter dan 2 backend Go yang berjalan independen.
+Sistem e-commerce perhiasan (**Jrb Jewelry**) yang terintegrasi dengan dompet digital (**DompeQU / Emoney**) lewat mekanisme **deeplink** untuk alur pembayaran antar-aplikasi. Terdiri dari 2 aplikasi Flutter dan 2 backend Go yang berjalan independen.
 
 ## Arsitektur Sistem
 
@@ -106,7 +106,11 @@ docker ps
 Pastikan konfigurasi koneksi Redis di `be-emoney/config/` mengarah ke `localhost:6379` (atau sesuaikan bila memakai `docker-compose.yml`).
 
 ---
-
+```
+```
+## untuk file JrB jewelry 
+https://github.com/Noorania/uts_JrB_Jewelry_1123150106
+```
 ## Menjalankan Backend
 
 ### gin-firebase-backend (Jrb Jewelry)
@@ -344,4 +348,6 @@ Route → Handler → Service → Repository → Database
   </tr>
 </table>
 ```
-
+## Developer
+Az-zahra Nurfadila Puspita Ayu
+Link Youtube : 
