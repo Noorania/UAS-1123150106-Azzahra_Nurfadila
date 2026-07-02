@@ -342,18 +342,15 @@ Route → Handler → Service → Repository → Database
 | PIN & verifikasi TOTP | `emoney/lib/.../pin_page.dart`, `twofa_totp_page.dart` |
 | Kirim callback sukses | `emoney/lib/core/services/deeplink_callback_service.dart` |
 | Tangkap callback balik | `jrb_jewelry/lib/core/services/emoney_service.dart` |
-
----
-
-## Troubleshooting
-
-| Masalah | Kemungkinan Penyebab | Solusi |
-|---|---|---|
-| `component name is null` saat launch deeplink | `<queries>` belum terdaftar di manifest pemanggil | Tambahkan `<queries>` dengan scheme tujuan, full rebuild |
-| Deeplink berhasil buka app tapi tidak masuk ke halaman yang benar | Scheme di `_isPaymentLink()` tidak cocok dengan URL yang dikirim | Pastikan scheme & host di kedua sisi identik |
-| `DioExceptionType.connectionTimeout` | Base URL salah (port/IP), atau server tidak jalan | Emulator pakai `10.0.2.2`, device fisik pakai IP WiFi lokal; cek port backend |
-| `GoException: no routes for location` | Route hilang/duplikat di `app_router.dart` | Cek tidak ada route yang ke-overwrite/terhapus saat editing |
-| PIN masuk tapi balik lagi / `INVALID_OTP` | Kode OTP hardcode/placeholder belum diganti kode asli | Pastikan `otpCode` yang dikirim ke backend adalah kode TOTP yang sesungguhnya dari input user |
-| Google Sign-In gagal di device asli | SHA-1 fingerprint belum terdaftar di Firebase | Generate `signingReport`, tambahkan SHA-1 ke Firebase Console |
-
+```
+```
+## SCREENSHOT
+<table>
+  <tr>
+   <td><img src="https://github.com/user-attachments/assets/4c019c04-623c-4f00-b445-b08f5f3f0846" width="250" /></td>
+    <td><img src="https://github.com/user-attachments/assets/bc1a116f-ed92-42b6-bbab-ed0456d58dee" width="250" /></td>
+    <td><img src="https://github.com/user-attachments/assets/b8642f68-852e-4d04-ac16-8cb38f809e1e" width="250" /></td>
+  </tr>
+</table>
+```
 
