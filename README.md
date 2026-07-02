@@ -71,7 +71,22 @@ Kedua backend (`gin-firebase-backend` dan `be-emoney`) memakai Firebase Admin SD
 2. Simpan file JSON hasil download ke folder `config/` masing-masing backend (jangan commit ke git — tambahkan ke `.gitignore`)
 3. Sesuaikan path file tersebut di kode config masing-masing backend
 
+---
 
-## Lisensi
+## Setup — Redis (Docker)
 
-Proyek ini dibuat untuk keperluan akademik/pembelajaran.
+Redis dipakai oleh **be-emoney** (misalnya untuk penyimpanan OTP/TOTP sementara).
+
+```powershell
+docker run --name redis-emoney -p 6379:6379 -d redis
+```
+
+Verifikasi container berjalan:
+```powershell
+docker ps
+```
+
+Pastikan konfigurasi koneksi Redis di `be-emoney/config/` mengarah ke `localhost:6379` (atau sesuaikan bila memakai `docker-compose.yml`).
+
+---
+
