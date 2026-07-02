@@ -300,7 +300,6 @@ Route → Handler → Service → Repository → Database
 
 ---
 
-
 ## Flow Deeplink Pembayaran
 
 ```
@@ -328,21 +327,7 @@ Route → Handler → Service → Repository → Database
 6. EmoneyService (Jrb Jewelry) menangkap callback via app_links
    → Broadcast lewat stream ke PaymentPendingPage
    → Navigasi otomatis ke halaman Order Success
-```
 
-**File kunci per tahap:**
-
-| Tahap | File |
-|---|---|
-| Generate URL | `jrb_jewelry/lib/core/services/emoney_service.dart` |
-| Intent-filter | `*/android/app/src/main/AndroidManifest.xml` |
-| Launch deeplink | `jrb_jewelry/lib/.../payment_pending_page.dart` |
-| Tangkap deeplink masuk | `emoney/lib/core/services/deeplink_service.dart` |
-| Halaman konfirmasi | `emoney/lib/.../payment_deeplink_page.dart` |
-| PIN & verifikasi TOTP | `emoney/lib/.../pin_page.dart`, `twofa_totp_page.dart` |
-| Kirim callback sukses | `emoney/lib/core/services/deeplink_callback_service.dart` |
-| Tangkap callback balik | `jrb_jewelry/lib/core/services/emoney_service.dart` |
-```
 ```
 ## SCREENSHOT
 <table>
