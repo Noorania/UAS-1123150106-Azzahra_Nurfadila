@@ -154,5 +154,150 @@ be-emoney/
 ├── routes/     # deklarasi endpoint
 └── services/    # business logic (topup, transfer, OTP, TOTP)
 ```
+---
+
+## Setup — Redis (Docker)
+
+Redis dipakai oleh **be-emoney** (misalnya untuk penyimpanan OTP/TOTP sementara).
+
+```powershell
+docker run --name redis-emoney -p 6379:6379 -d redis
+```
+
+Verifikasi container berjalan:
+```powershell
+docker ps
+```
+
+Pastikan konfigurasi koneksi Redis di `be-emoney/config/` mengarah ke `localhost:6379` (atau sesuaikan bila memakai `docker-compose.yml`).
+
+---
+
+## Menjalankan Backend
+
+### gin-firebase-backend (Jrb Jewelry)
+
+```powershell
+cd gin-firebase-backend
+go mod tidy
+go run main.go
+```
+
+Berjalan di **port `8081`**. Pastikan MySQL sudah aktif dan konfigurasi koneksi database di `config/` sudah sesuai.
+
+Struktur folder:
+```
+gin-firebase-backend/
+├── config/         # koneksi database & Firebase Admin SDK
+├── handlers/        # HTTP handler (menerima request)
+├── middleware/       # auth middleware, dsb
+├── models/          # struct data (Order, Product, CartItem, ...)
+├── repositories/      # akses database (query murni)
+├── routes/          # deklarasi endpoint
+├── seed/           # data awal / dummy
+└── services/         # business logic
+```
+
+### be-emoney (Emoney)
+
+```powershell
+cd be-emoney
+go mod tidy
+go run main.go
+```
+
+Pastikan Redis dan MySQL sudah aktif sebelum menjalankan.
+
+Struktur folder:
+```
+be-emoney/
+├── config/     # koneksi database, Redis, Firebase Admin SDK
+├── database/    # migration / schema
+├── handlers/    # HTTP handler
+├── middleware/   # auth middleware, dsb
+├── models/     # struct data (Account, Transaction, ...)
+├── postman/     # collection Postman untuk testing manual
+├── routes/     # deklarasi endpoint
+└── services/    # business logic (topup, transfer, OTP, TOTP)
+```
+
+---
+
+## Menjalankan Aplikasi Flutter
+
+### jrb_jewelry
+
+```powershell
+cd jrb_jewelry
+flutter pub get
+flutter run
+```
+
+Sebelum run, sesuaikan base URL API di `lib/core/constants/` dengan alamat backend:
+- **Emulator Android Studio** → `http://10.0.2.2:8081`
+- **Device fisik** → `http://<IP-WiFi-lokal-komputer>:8081` (pastikan device & komputer satu jaringan WiFi)
+
+### emoney
+
+```powershell
+cd emoney
+flutter pub get
+flutter run
+```
+
+Sesuaikan base URL API dengan cara yang sama, mengarah ke backend `be-emoney`.
+
+> **Catatan:** Kedua app perlu ter-install di device/emulator **yang sama** agar deeplink antar-app dapat berfungsi saat testing.
+
+---
+
+## Clean Architecture
+
+### jrb_jewelry — Feature-based
+
+```
+lib/
+├── core/
+│   ├── constants/
+│   ├── guards/       # route guard
+│   ├── providers/     # state management global
+│   ├── routes/       # app_router.dart
+│   ├── services/      # EmoneyService (deeplink), NotificationService
+│   └── theme/
+└── features/
+    ├── auth/         (data / domain / presentation)
+    ├── cart/         (data / domain / presentation)
+    ├── dashboard/      (data / domain / presentation)
+    └── order/        (data / domain / presentation)
+```
+
+Setiap fitur mengelompokkan layer `data`, `domain`, `presentation` di dalam foldernya sendiri — memudahkan navigasi saat bekerja pada satu fitur tertentu.
+
+### emoney — Layer-based
+
+```
+lib/
+├── core/           # constants, error, network, router, services, theme, utils
+├── data/           # datasources, models, repositories (implementasi)
+├── domain/          # entities, repositories (interface), usecases
+├── injection/        # dependency injection (GetIt)
+└── presentation/       # blocs, pages, widgets
+```
+
+Mengikuti clean architecture klasik: `domain` sebagai inti bisnis yang tidak bergantung pada detail teknis, `data` sebagai implementasi konkret (API, storage), `presentation` sebagai UI yang mengonsumsi `usecase` melalui BLoC.
+
+### Backend Go — Layered Architecture
+
+Kedua backend Go mengikuti pola serupa:
+
+```
+Route → Handler → Service → Repository → Database
+```
+
+- **Handler** — menerima HTTP request, memanggil service
+- **Service** — business logic (validasi, kalkulasi, orkestrasi)
+- **Repository** — akses database murni, tanpa logic bisnis
+
+---
 
 
