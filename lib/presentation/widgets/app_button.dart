@@ -90,12 +90,12 @@ class AppButton extends StatelessWidget {
     return switch (variant) {
       AppButtonVariant.primary => (
           AppColors.primary,
-          Colors.white,
+          AppColors.ink,
           AppColors.shadowPrimary,
           null,
         ),
       AppButtonVariant.dark => (AppColors.ink, Colors.white, [], null),
-      AppButtonVariant.soft => (AppColors.primarySurface, AppColors.primary, [], null),
+      AppButtonVariant.soft => (AppColors.primarySurface, AppColors.ink, [], null),
       AppButtonVariant.ghost => (Colors.transparent, AppColors.slate600, [], null),
       AppButtonVariant.outline => (
           Colors.white,
@@ -105,13 +105,13 @@ class AppButton extends StatelessWidget {
         ),
       AppButtonVariant.outlineWhite => (
           Colors.transparent,
-          Colors.white,
+          AppColors.ink, // Use dark text for outline white since primaryBg is cream now
           [],
-          Border.all(color: Colors.white.withValues(alpha: 0.7), width: 1.5),
+          Border.all(color: AppColors.ink.withValues(alpha: 0.7), width: 1.5),
         ),
       AppButtonVariant.white => (
           Colors.white,
-          AppColors.primary,
+          AppColors.ink,
           [BoxShadow(color: Colors.black.withValues(alpha: 0.14), blurRadius: 20, offset: const Offset(0, 8))],
           null,
         ),

@@ -18,7 +18,7 @@ void main() async {
 
   // Initialize dependency injection
   await di.init();
-  
+
   DeeplinkService(AppRouter.router).init(); // ← BARU
 
   // Set preferred orientations
@@ -42,7 +42,7 @@ class DompetKampusApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Dompet Kampus Global',
+      title: 'Dompetku',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       routerConfig: AppRouter.router,

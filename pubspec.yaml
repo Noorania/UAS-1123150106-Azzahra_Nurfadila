@@ -22,7 +22,7 @@ dependencies:
 
   # Deep Links 
   app_links: ^6.3.2
-  url_launcher: ^6.3.0
+  url_launcher: ^6.3.1
 
   # Network
   dio: ^5.7.0

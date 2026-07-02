@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 /// Payload yang diterima dari deeplink pembayaran merchant.
 ///
 /// Format URL yang didukung:
-///   dompetkampus://pay?merchant_id=...&merchant_name=...&amount=...
+///   emoneydompetku://pay?merchant_id=...&merchant_name=...&amount=...
 ///                      &description=...&reference=...&callback=...
 ///   https://dompetkampus.app/pay?merchant_id=...&...  (App Link, opsional)
 @immutable
@@ -156,11 +156,16 @@ class DeeplinkService {
     }
   }
 
+  /// PENTING: scheme deeplink yang benar-benar dipakai adalah "emoneydompetku"
+  /// (sesuai AndroidManifest.xml & EmoneyService.buildDeeplinkUrl() di sisi
+  /// jrb_jewelry), BUKAN "dompetkampus". Sebelumnya scheme di sini salah,
+  /// sehingga app berhasil terbuka oleh sistem Android (manifest cocok)
+  /// tapi DeeplinkService menolak memproses URI-nya karena _isPaymentLink()
+  /// selalu return false — akibatnya app jalan ke flow normal (splash/home),
+  /// bukan ke halaman /pay.
   bool _isPaymentLink(Uri uri) {
-    if (uri.scheme == 'dompetkampus' && uri.host == 'pay') return true;
-    if (uri.scheme == 'https' &&
-        uri.host == 'dompetkampus.app' &&
-        uri.path.startsWith('/pay')) {
+    if (uri.scheme == 'emoneydompetku' && uri.host == 'pay') return true;
+     {
       return true;
     }
     return false;

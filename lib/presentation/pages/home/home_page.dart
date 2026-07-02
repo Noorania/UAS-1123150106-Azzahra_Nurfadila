@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                             AppAvatar(
                                 name: fullName,
                                 size: 44,
-                                bg: Colors.white.withValues(alpha: 0.25)),
+                                bg: AppColors.ink),
                             const SizedBox(width: 12),
                             Expanded(
                               child: Column(
@@ -79,14 +79,14 @@ class _HomePageState extends State<HomePage> {
                                       style: TextStyle(
                                         fontFamily: 'PlusJakartaSans',
                                         fontSize: 13,
-                                        color: Colors.white70,
+                                        color: AppColors.slate600,
                                       )),
                                   Text('$firstName ',
                                       style: const TextStyle(
                                         fontFamily: 'PlusJakartaSans',
                                         fontSize: 17,
                                         fontWeight: FontWeight.w800,
-                                        color: Colors.white,
+                                        color: AppColors.ink,
                                         letterSpacing: -0.2,
                                       )),
                                 ],
@@ -98,11 +98,11 @@ class _HomePageState extends State<HomePage> {
                                   width: 42,
                                   height: 42,
                                   decoration: BoxDecoration(
-                                    color: Colors.white.withValues(alpha: 0.18),
+                                    color: AppColors.ink.withValues(alpha: 0.06),
                                     borderRadius: BorderRadius.circular(14),
                                   ),
                                   child: const Icon(Icons.notifications_outlined,
-                                      size: 21, color: Colors.white),
+                                      size: 21, color: AppColors.ink),
                                 ),
                                 Positioned(
                                   top: 10,

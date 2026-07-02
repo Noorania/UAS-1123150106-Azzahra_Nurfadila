@@ -32,7 +32,7 @@ import '../../presentation/pages/payment/payment_deeplink_page.dart';
 class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
-  static final GoRouter get router => GoRouter(
+  static final GoRouter router = GoRouter(
         navigatorKey: _rootNavigatorKey,
         initialLocation: '/',
         routes: [
@@ -67,7 +67,10 @@ class AppRouter {
             path: '/2fa/totp',
             builder: (_, state) {
               final extra = state.extra as Map<String, dynamic>?;
-              return _withOtp(TwoFATotpPage(mode: extra?['mode'] as String? ?? 'login'));
+              return _withPayment(TwoFATotpPage(
+                mode: extra?['mode'] as String? ?? 'login',
+                flowData: extra?['flowData'] as Map<String, dynamic>?,
+              ));
             },
           ),
           GoRoute(
@@ -168,7 +171,6 @@ class AppRouter {
               ));
             },
           ),
-          GoRoute(path: '/merchant', builder: (_, __) => _withPayment(const MerchantCheckoutPage())),
         ],
       );
 

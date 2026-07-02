@@ -39,7 +39,7 @@ class AccountPage extends StatelessWidget {
                       20, MediaQuery.of(context).padding.top + 12, 20, 24),
                   child: Row(
                     children: [
-                      AppAvatar(name: user?.name ?? 'User', size: 60, bg: Colors.white.withValues(alpha: 0.25)),
+                      AppAvatar(name: user?.name ?? 'User', size: 60, bg: AppColors.ink),
                       const SizedBox(width: 14),
                       Expanded(
                         child: Column(
@@ -50,14 +50,14 @@ class AccountPage extends StatelessWidget {
                                   fontFamily: 'PlusJakartaSans',
                                   fontSize: 19,
                                   fontWeight: FontWeight.w800,
-                                  color: Colors.white,
+                                  color: AppColors.ink,
                                 )),
                             Text(user?.email ?? '',
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   fontFamily: 'PlusJakartaSans',
                                   fontSize: 13,
-                                  color: Colors.white70,
+                                  color: AppColors.slate600,
                                 )),
                           ],
                         ),
@@ -65,19 +65,19 @@ class AccountPage extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.18),
+                          color: AppColors.ink.withValues(alpha: 0.06),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Row(
                           children: [
-                            Icon(Icons.verified_user_outlined, size: 14, color: Colors.white),
+                            Icon(Icons.verified_user_outlined, size: 14, color: AppColors.ink),
                             SizedBox(width: 5),
                             Text('Terverifikasi',
                                 style: TextStyle(
                                   fontFamily: 'PlusJakartaSans',
                                   fontSize: 11.5,
                                   fontWeight: FontWeight.w700,
-                                  color: Colors.white,
+                                  color: AppColors.ink,
                                 )),
                           ],
                         ),
@@ -194,7 +194,7 @@ class AccountPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       const Center(
-                        child: Text('Dompet Kampus Global · v1.0.0',
+                        child: Text('DompetQu · v1.0.0',
                             style: TextStyle(
                               fontFamily: 'PlusJakartaSans',
                               fontSize: 12,

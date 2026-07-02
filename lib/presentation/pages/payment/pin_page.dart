@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/utils/currency_formatter.dart';
 import '../../blocs/payment/payment_bloc.dart';
@@ -22,57 +21,47 @@ class _PinPageState extends State<PinPage> {
   bool _hasError = false;
 
   void _onComplete(String pin) {
-    // In production, validate PIN with backend
-    // Here we simulate: any 6-digit PIN triggers the payment
+    // In production, validate PIN with backend first before proceeding.
+    // Here we simulate: any 6-digit PIN is accepted as correct.
     setState(() => _busy = true);
-    _processPayment();
+
+    final kind = widget.flowData['kind'] as String? ?? '';
+
+    if (kind == 'topup') {
+      // Topup tidak butuh OTP — langsung proses.
+      _processTopup();
+    } else {
+      // transfer / payment / deeplink WAJIB verifikasi TOTP dulu.
+      // PENTING: sebelumnya di sini langsung dispatch PaymentTransferRequested
+      // dengan otpCode hardcode '000000' — itu penyebab bug "PIN masuk tapi
+      // balik lagi / INVALID_OTP". Sekarang kita arahkan dulu ke halaman TOTP,
+      // baru transfer dieksekusi di sana dengan kode OTP yang sesungguhnya.
+      context.push('/2fa/totp', extra: {
+        'mode': 'payment',
+        'flowData': widget.flowData,
+      }).then((_) {
+        if (mounted) {
+          setState(() {
+            _busy = false;
+            _pin = '';
+          });
+        }
+      });
+    }
   }
 
-  void _processPayment() {
+  void _processTopup() {
     final flow = widget.flowData;
-    final kind = flow['kind'] as String? ?? '';
-
-    if (kind == 'transfer') {
-      // Use OTP from 2FA — for demo we use a hardcoded type
-      context.read<PaymentBloc>().add(PaymentTransferRequested(
-        amount: (flow['amount'] as num).toDouble(),
-        description: flow['note'] as String? ?? 'Transfer',
-        otpCode: '000000', // In production: get from actual 2FA
-        otpType: AppConstants.otpTypeTotp,
-        
-      ));
-    } else if (kind == 'topup') {
-      context.read<PaymentBloc>().add(PaymentTopupRequested(
-        (flow['amount'] as num).toDouble(),
-      ));
-    } else if (kind == 'payment' || kind == 'deeplink') {
-      // QRIS payment → also uses transfer endpoint
-      context.read<PaymentBloc>().add(PaymentTransferRequested(
-        amount: (flow['amount'] as num).toDouble(),
-        description: flow['description'] as String? ?? 'Pembayaran QRIS',
-        otpCode: '000000',
-        otpType: AppConstants.otpTypeTotp,
-      ));
-    }
+    context.read<PaymentBloc>().add(PaymentTopupRequested(
+          (flow['amount'] as num).toDouble(),
+        ));
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<PaymentBloc, PaymentState>(
       listener: (context, state) {
-        if (state is PaymentTransferSuccess) {
-          final result = state.result;
-          context.go('/success', extra: {
-            'title': 'Transfer berhasil',
-            'subtitle': result.description,
-            'amount': result.amount,
-            'lines': [
-              ['Jumlah', CurrencyFormatter.format(result.amount)],
-              ['Saldo setelah', CurrencyFormatter.format(result.balanceAfter)],
-              ['Ref', 'DKG${result.transactionId}'],
-            ],
-          });
-        } else if (state is PaymentTopupSuccess) {
+        if (state is PaymentTopupSuccess) {
           context.go('/success', extra: {
             'title': 'Top up berhasil',
             'subtitle': 'Saldo kamu bertambah',
@@ -81,11 +70,6 @@ class _PinPageState extends State<PinPage> {
               ['Jumlah', CurrencyFormatter.format(state.amount)],
               ['Saldo sekarang', CurrencyFormatter.format(state.balance)],
             ],
-          });
-        } else if (state is PaymentInvalidOtp) {
-          setState(() { _busy = false; _hasError = true; _pin = ''; });
-          Future.delayed(const Duration(milliseconds: 800), () {
-            if (mounted) setState(() => _hasError = false);
           });
         } else if (state is PaymentError) {
           setState(() => _busy = false);

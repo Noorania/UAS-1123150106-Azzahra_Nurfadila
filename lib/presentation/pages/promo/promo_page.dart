@@ -59,7 +59,7 @@ class PromoPage extends StatelessWidget {
                           height: 140,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.white.withValues(alpha: 0.1),
+                            color: AppColors.ink.withValues(alpha: 0.05),
                           ),
                         ),
                       ),
@@ -73,7 +73,7 @@ class PromoPage extends StatelessWidget {
                                 fontFamily: 'PlusJakartaSans',
                                 fontSize: 22,
                                 fontWeight: FontWeight.w800,
-                                color: Colors.white,
+                                color: AppColors.ink,
                                 height: 1.2,
                               )),
                           SizedBox(height: 8),
@@ -81,7 +81,7 @@ class PromoPage extends StatelessWidget {
                               style: TextStyle(
                                 fontFamily: 'PlusJakartaSans',
                                 fontSize: 13.5,
-                                color: Colors.white70,
+                                color: AppColors.slate600,
                               )),
                         ],
                       ),

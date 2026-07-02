@@ -47,7 +47,7 @@ class AppTabBar extends StatelessWidget {
                       shape: BoxShape.circle,
                       boxShadow: AppColors.shadowPrimary,
                     ),
-                    child: const Icon(DkgIcons.scan, color: Colors.white, size: 26),
+                    child: const Icon(DkgIcons.scan, color: AppColors.ink, size: 26),
                   ),
                 ),
               ),

@@ -31,13 +31,15 @@ import '../core/constants/app_constants.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  // Guard: skip jika sudah diinisialisasi (mencegah error saat hot restart)
+  if (sl.isRegistered<SecureStorageDatasource>()) return;
   // External
   const secureStorage = FlutterSecureStorage(
     aOptions: AndroidOptions(encryptedSharedPreferences: true),
   );
 
-  // Core
-  sl.registerLazySingleton<ApiClient>(() => ApiClient());
+  // // Core
+  // sl.registerLazySingleton<ApiClient>(() => ApiClient());
 
   // Local datasource
   sl.registerLazySingleton<SecureStorageDatasource>(

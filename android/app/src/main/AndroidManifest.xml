@@ -25,12 +25,12 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            <!-- Deep link: dompetkampus://pay?... -->
+            <!-- Deep link: dompetku://pay?... -->
             <intent-filter android:autoVerify="false">
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="dompetkampus" android:host="pay"/>
+                <data android:scheme="emoneydompetku" android:host="pay"/>
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

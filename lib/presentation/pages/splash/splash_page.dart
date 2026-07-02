@@ -45,7 +45,7 @@ class _SplashPageState extends State<SplashPage> {
                     height: 320,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white.withValues(alpha: 0.08),
+                      color: AppColors.ink.withValues(alpha: 0.05),
                     ),
                   ),
                 ),
@@ -57,7 +57,7 @@ class _SplashPageState extends State<SplashPage> {
                     height: 220,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white.withValues(alpha: 0.07),
+                      color: AppColors.ink.withValues(alpha: 0.04),
                     ),
                   ),
                 ),
@@ -67,15 +67,15 @@ class _SplashPageState extends State<SplashPage> {
                   child: Column(
                     children: [
                       const Spacer(),
-                      const AppLogo(size: 92, light: true),
+                      const AppLogo(size: 92, light: false),
                       const SizedBox(height: 26),
                       const Text(
-                        'Dompet Kampus',
+                        'DompetQu',
                         style: TextStyle(
                           fontFamily: 'PlusJakartaSans',
                           fontSize: 30,
                           fontWeight: FontWeight.w800,
-                          color: Colors.white,
+                          color: AppColors.ink,
                           letterSpacing: -0.5,
                         ),
                       ),
@@ -86,7 +86,7 @@ class _SplashPageState extends State<SplashPage> {
                           fontFamily: 'PlusJakartaSans',
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                          color: AppColors.slate600,
                           letterSpacing: 3,
                         ),
                       ),
@@ -97,7 +97,7 @@ class _SplashPageState extends State<SplashPage> {
                         style: TextStyle(
                           fontFamily: 'PlusJakartaSans',
                           fontSize: 15,
-                          color: Colors.white,
+                          color: AppColors.slate600,
                           height: 1.5,
                         ),
                       ),
@@ -106,13 +106,13 @@ class _SplashPageState extends State<SplashPage> {
                         children: [
                           AppButton(
                             label: 'Buat Akun Baru',
-                            variant: AppButtonVariant.white,
+                            variant: AppButtonVariant.dark,
                             onPressed: () => context.push('/register'),
                           ),
                           const SizedBox(height: 11),
                           AppButton(
                             label: 'Masuk ke Akun',
-                            variant: AppButtonVariant.outlineWhite,
+                            variant: AppButtonVariant.outline,
                             onPressed: () => context.push('/login'),
                           ),
                         ],
