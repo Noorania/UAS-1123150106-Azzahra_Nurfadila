@@ -6,14 +6,14 @@ class AppTextStyles {
 
   static const TextStyle h1 = TextStyle(
     fontFamily: _font,
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: FontWeight.w800,
     color: AppColors.ink,
     letterSpacing: -0.5,
   );
   static const TextStyle h2 = TextStyle(
     fontFamily: _font,
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: FontWeight.w800,
     color: AppColors.ink,
     letterSpacing: -0.4,
@@ -21,62 +21,62 @@ class AppTextStyles {
   static const TextStyle h3 = TextStyle(
     fontFamily: _font,
     fontSize: 22,
-    fontWeight: FontWeight.w800,
+    fontWeight: FontWeight.w700,
     color: AppColors.ink,
     letterSpacing: -0.3,
   );
   static const TextStyle h4 = TextStyle(
     fontFamily: _font,
-    fontSize: 19,
-    fontWeight: FontWeight.w800,
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
     color: AppColors.ink,
   );
   static const TextStyle titleLg = TextStyle(
     fontFamily: _font,
-    fontSize: 17,
-    fontWeight: FontWeight.w800,
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
     color: AppColors.ink,
     letterSpacing: -0.2,
   );
   static const TextStyle titleMd = TextStyle(
     fontFamily: _font,
     fontSize: 16,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w600,
     color: AppColors.ink,
   );
   static const TextStyle titleSm = TextStyle(
     fontFamily: _font,
-    fontSize: 15,
-    fontWeight: FontWeight.w700,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
     color: AppColors.ink,
   );
   static const TextStyle bodyLg = TextStyle(
     fontFamily: _font,
-    fontSize: 15.5,
-    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
     color: AppColors.ink,
   );
   static const TextStyle bodyMd = TextStyle(
     fontFamily: _font,
-    fontSize: 14.5,
-    fontWeight: FontWeight.w500,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
     color: AppColors.ink,
   );
   static const TextStyle bodySm = TextStyle(
     fontFamily: _font,
-    fontSize: 13.5,
-    fontWeight: FontWeight.w500,
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
     color: AppColors.slate500,
   );
   static const TextStyle caption = TextStyle(
     fontFamily: _font,
-    fontSize: 12.5,
+    fontSize: 12,
     fontWeight: FontWeight.w500,
-    color: AppColors.slate400,
+    color: AppColors.slate500, // Replaced slate400 to slate500 for better contrast
   );
   static const TextStyle label = TextStyle(
     fontFamily: _font,
-    fontSize: 13.5,
+    fontSize: 14,
     fontWeight: FontWeight.w600,
     color: AppColors.slate600,
   );

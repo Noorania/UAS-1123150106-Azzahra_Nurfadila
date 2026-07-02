@@ -9,13 +9,13 @@ class AppTheme {
       useMaterial3: true,
       fontFamily: fontFamily,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.gold,
-        primary: AppColors.gold,
-        onPrimary: AppColors.ink,
-        secondary: AppColors.green,
+        seedColor: AppColors.primary,
+        primary: AppColors.primary,
+        onPrimary: AppColors.white,
+        secondary: AppColors.secondary,
         surface: AppColors.white,
         background: AppColors.bg,
-        error: AppColors.red,
+        error: AppColors.error,
       ),
       scaffoldBackgroundColor: AppColors.bg,
       appBarTheme: const AppBarTheme(
@@ -26,7 +26,7 @@ class AppTheme {
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.dark,
         ),
-        iconTheme: IconThemeData(color: AppColors.ink),
+        iconTheme: IconThemeData(color: AppColors.primary),
         titleTextStyle: TextStyle(
           fontFamily: fontFamily,
           fontSize: 17,
@@ -36,12 +36,12 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.gold,
-          foregroundColor: AppColors.ink,
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.white,
           elevation: 0,
           minimumSize: const Size(double.infinity, 54),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16), // Softer luxury corner
+            borderRadius: BorderRadius.circular(16),
           ),
           textStyle: const TextStyle(
             fontFamily: fontFamily,
@@ -65,13 +65,20 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: AppColors.gold, width: 1.5),
+          borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
         ),
       ),
       dividerColor: AppColors.line2,
       dividerTheme: const DividerThemeData(
         color: AppColors.line2,
         thickness: 1,
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: Colors.white,
+        selectedItemColor: AppColors.primary,
+        unselectedItemColor: AppColors.slate500,
+        type: BottomNavigationBarType.fixed,
+        elevation: 8,
       ),
     );
   }

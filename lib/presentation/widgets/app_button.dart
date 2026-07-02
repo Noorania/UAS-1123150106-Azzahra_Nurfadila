@@ -45,8 +45,7 @@ class AppButton extends StatelessWidget {
           width: fullWidth ? double.infinity : null,
           padding: EdgeInsets.symmetric(horizontal: px),
           decoration: BoxDecoration(
-            gradient: variant == AppButtonVariant.primary ? AppColors.goldGradient : null,
-            color: variant != AppButtonVariant.primary ? bg : null,
+            color: bg,
             borderRadius: BorderRadius.circular(radius),
             boxShadow: shadow,
             border: border,
@@ -89,23 +88,23 @@ class AppButton extends StatelessWidget {
   (Color, Color, List<BoxShadow>, Border?) _resolveStyle() {
     return switch (variant) {
       AppButtonVariant.primary => (
-          AppColors.gold,
-          Colors.white, // White text on gold is more readable, or ink. Let's use ink for contrast as per prompt
+          AppColors.primary,
+          Colors.white,
           AppColors.shadowPrimary,
           null,
         ),
       AppButtonVariant.dark => (AppColors.ink, Colors.white, [], null),
-      AppButtonVariant.soft => (AppColors.primarySurface, AppColors.ink, [], null),
+      AppButtonVariant.soft => (AppColors.softPink, AppColors.ink, [], null),
       AppButtonVariant.ghost => (Colors.transparent, AppColors.slate600, [], null),
       AppButtonVariant.outline => (
           Colors.white,
-          AppColors.ink,
+          AppColors.primary,
           [],
-          Border.all(color: AppColors.line, width: 1.5),
+          Border.all(color: AppColors.primary, width: 1.5),
         ),
       AppButtonVariant.outlineWhite => (
           Colors.transparent,
-          AppColors.ink, // Use dark text for outline white
+          AppColors.ink, 
           [],
           Border.all(color: AppColors.ink.withValues(alpha: 0.7), width: 1.5),
         ),
@@ -115,8 +114,8 @@ class AppButton extends StatelessWidget {
           [BoxShadow(color: Colors.black.withValues(alpha: 0.08), blurRadius: 16, offset: const Offset(0, 4))],
           null,
         ),
-      AppButtonVariant.danger => (AppColors.red, Colors.white, [], null),
-      AppButtonVariant.success => (AppColors.green, Colors.white, [], null),
+      AppButtonVariant.danger => (AppColors.error, Colors.white, [], null),
+      AppButtonVariant.success => (AppColors.success, Colors.white, [], null),
     };
   }
 }

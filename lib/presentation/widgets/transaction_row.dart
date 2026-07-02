@@ -15,68 +15,68 @@ class TransactionRow extends StatelessWidget {
     final isCredit = txn.isCredit;
     final (icon, tone) = _resolveIcon(txn.description);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (divider)
-          const Divider(height: 1, thickness: 1, color: AppColors.line2, indent: 16),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              FeatureIcon(icon: icon, tone: tone, size: 44, iconSize: 21),
-              const SizedBox(width: 13),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      txn.description,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontFamily: 'PlusJakartaSans',
-                        fontSize: 14.5,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.ink,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      _formatDate(txn.createdAt),
-                      style: const TextStyle(
-                        fontFamily: 'PlusJakartaSans',
-                        fontSize: 12.5,
-                        color: AppColors.slate400,
-                      ),
-                    ),
-                  ],
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: AppColors.shadowSoft,
+      ),
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        children: [
+          FeatureIcon(icon: icon, tone: tone, size: 48, iconSize: 24),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  txn.description,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontFamily: 'PlusJakartaSans',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.ink,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                '${isCredit ? '+' : '-'}${CurrencyFormatter.format(txn.amount)}',
-                style: TextStyle(
-                  fontFamily: 'PlusJakartaSans',
-                  fontSize: 14.5,
-                  fontWeight: FontWeight.w800,
-                  color: isCredit ? AppColors.green : AppColors.ink,
+                const SizedBox(height: 4),
+                Text(
+                  _formatDate(txn.createdAt),
+                  style: const TextStyle(
+                    fontFamily: 'PlusJakartaSans',
+                    fontSize: 13,
+                    color: AppColors.slate500,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+          const SizedBox(width: 8),
+          Text(
+            '${isCredit ? '+' : '-'}${CurrencyFormatter.format(txn.amount)}',
+            style: TextStyle(
+              fontFamily: 'PlusJakartaSans',
+              fontSize: 16,
+              fontWeight: FontWeight.w800,
+              color: isCredit ? AppColors.success : AppColors.ink,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   (IconData, String) _resolveIcon(String desc) {
     final d = desc.toLowerCase();
-    if (d.contains('top up') || d.contains('topup')) return (DkgIcons.topup, 'blue');
-    if (d.contains('transfer')) return (DkgIcons.send, 'green');
-    if (d.contains('qris') || d.contains('bayar')) return (DkgIcons.qris, 'violet');
+    if (d.contains('top up') || d.contains('topup')) return (DkgIcons.topup, 'green'); // darkOlive
+    if (d.contains('transfer')) return (DkgIcons.send, 'blue'); // secondary (teal)
+    if (d.contains('qris') || d.contains('bayar')) return (DkgIcons.qris, 'red'); // primary (red)
     if (d.contains('pulsa')) return (DkgIcons.pulsa, 'blue');
-    if (d.contains('tokobel') || d.contains('toko')) return (DkgIcons.store, 'amber');
+    if (d.contains('cashback') || d.contains('reward')) return (DkgIcons.gift, 'green'); // accent (lime)
+    if (d.contains('tokobel') || d.contains('toko')) return (DkgIcons.store, 'red');
     return (DkgIcons.wallet, 'slate');
   }
 
