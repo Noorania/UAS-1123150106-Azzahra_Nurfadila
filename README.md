@@ -27,7 +27,7 @@ E-commerce yang mendelegasikan proses pembayaran ke aplikasi dompet digital terp
 - Pembayaran: Virtual Account, Gopay, Dompetku
 - Tracking & riwayat pesanan
 - Redirect otomatis ke halaman sukses setelah pembayaran
-link jrb_jewelry https://github.com/Noorania/uts_JrB_Jewelry_1123150106
+- link jrb_jewelry https://github.com/Noorania/uts_JrB_Jewelry_1123150106
 
 **Dompetku**
 - Cek saldo, riwayat transaksi, top up, transfer
