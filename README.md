@@ -301,3 +301,59 @@ Route → Handler → Service → Repository → Database
 ---
 
 
+## Flow Deeplink Pembayaran
+
+```
+1. User checkout di Jrb Jewelry, pilih metode bayar Emoney
+   → EmoneyService.buildDeeplinkUrl() generate:
+     emoneydompetku://pay?merchant_id=...&amount=...&reference=...&callback=jrbjewelry://payment-callback
+
+2. url_launcher (LaunchMode.externalApplication) membuka app Emoney
+   → Android package visibility (<queries>) & intent-filter (AndroidManifest.xml)
+     harus terdaftar di kedua app agar resolusi intent berhasil
+
+3. DeeplinkService (Emoney) menangkap URI via app_links
+   → Cold-start: URI disimpan sebagai pending, diproses setelah auth check selesai
+   → In-app: langsung router.go('/pay')
+
+4. PaymentDeeplinkPage menampilkan ringkasan pembayaran
+   → User masukkan PIN → lanjut verifikasi TOTP
+   → Kode TOTP dikirim sebagai otpCode ke endpoint transfer backend
+
+5. Setelah transfer sukses:
+   → DeeplinkCallbackService.notifySuccess() generate:
+     jrbjewelry://payment-callback?status=success&reference=...&transaction_id=...
+   → launchUrl membuka kembali app Jrb Jewelry
+
+6. EmoneyService (Jrb Jewelry) menangkap callback via app_links
+   → Broadcast lewat stream ke PaymentPendingPage
+   → Navigasi otomatis ke halaman Order Success
+```
+
+**File kunci per tahap:**
+
+| Tahap | File |
+|---|---|
+| Generate URL | `jrb_jewelry/lib/core/services/emoney_service.dart` |
+| Intent-filter | `*/android/app/src/main/AndroidManifest.xml` |
+| Launch deeplink | `jrb_jewelry/lib/.../payment_pending_page.dart` |
+| Tangkap deeplink masuk | `emoney/lib/core/services/deeplink_service.dart` |
+| Halaman konfirmasi | `emoney/lib/.../payment_deeplink_page.dart` |
+| PIN & verifikasi TOTP | `emoney/lib/.../pin_page.dart`, `twofa_totp_page.dart` |
+| Kirim callback sukses | `emoney/lib/core/services/deeplink_callback_service.dart` |
+| Tangkap callback balik | `jrb_jewelry/lib/core/services/emoney_service.dart` |
+
+---
+
+## Troubleshooting
+
+| Masalah | Kemungkinan Penyebab | Solusi |
+|---|---|---|
+| `component name is null` saat launch deeplink | `<queries>` belum terdaftar di manifest pemanggil | Tambahkan `<queries>` dengan scheme tujuan, full rebuild |
+| Deeplink berhasil buka app tapi tidak masuk ke halaman yang benar | Scheme di `_isPaymentLink()` tidak cocok dengan URL yang dikirim | Pastikan scheme & host di kedua sisi identik |
+| `DioExceptionType.connectionTimeout` | Base URL salah (port/IP), atau server tidak jalan | Emulator pakai `10.0.2.2`, device fisik pakai IP WiFi lokal; cek port backend |
+| `GoException: no routes for location` | Route hilang/duplikat di `app_router.dart` | Cek tidak ada route yang ke-overwrite/terhapus saat editing |
+| PIN masuk tapi balik lagi / `INVALID_OTP` | Kode OTP hardcode/placeholder belum diganti kode asli | Pastikan `otpCode` yang dikirim ke backend adalah kode TOTP yang sesungguhnya dari input user |
+| Google Sign-In gagal di device asli | SHA-1 fingerprint belum terdaftar di Firebase | Generate `signingReport`, tambahkan SHA-1 ke Firebase Console |
+
+
