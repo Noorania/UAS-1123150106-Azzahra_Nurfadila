@@ -75,15 +75,6 @@ E-commerce yang mendelegasikan proses pembayaran ke aplikasi dompet digital terp
 
 ---
 
-## Struktur Repository
-
-```
-├── jrb_jewelry/            # Flutter app — e-commerce
-├── gin-firebase-backend/    # Go backend — jrb_jewelry
-├── emoney/                # Flutter app — Dompetku
-└── be-emoney/              # Go backend — Dompetku
-```
-
 ---
 
 ## Prasyarat
