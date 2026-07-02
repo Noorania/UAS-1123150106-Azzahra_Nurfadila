@@ -334,14 +334,13 @@ Route → Handler → Service → Repository → Database
 <table>
   <tr>
     <td><img src="https://github.com/user-attachments/assets/4c019c04-623c-4f00-b445-b08f5f3f0846" width="200" /></td>
-      <td><img src="https://github.com/user-attachments/assets/b8642f68-852e-4d04-ac16-8cb38f809e1e" width="200" /></td>
+    <td><img src="https://github.com/user-attachments/assets/b8642f68-852e-4d04-ac16-8cb38f809e1e" width="200" /></td>
     <td><img src="https://github.com/user-attachments/assets/bc1a116f-ed92-42b6-bbab-ed0456d58dee" width="200" /></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/user-attachments/assets/0dd4c5a0-676a-425a-9f35-948d43e36c32" width="200" /></td>
     <td><img src="https://github.com/user-attachments/assets/b2c606c0-e03c-48dd-9eb3-eeafd400d727" width="200" /></td>
     <td><img src="https://github.com/user-attachments/assets/5fc3ac42-62c4-4c5d-86b1-4ae4d54cc167" width="200" /></td>
-    <td></td>
+      <td><img src="https://github.com/user-attachments/assets/0dd4c5a0-676a-425a-9f35-948d43e36c32" width="200" /></td>
   </tr>
 </table>
 ```
