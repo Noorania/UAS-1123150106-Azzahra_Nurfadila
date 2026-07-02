@@ -6,7 +6,7 @@ import '../../widgets/app_button.dart';
 import '../../widgets/app_logo.dart';
 import '../../widgets/feature_icon.dart';
 
-const _orange = Color(0xFFFF6A2B);
+const _primary = AppColors.ink; // Replace orange with elegant dark charcoal
 
 class MerchantCheckoutPage extends StatelessWidget {
   const MerchantCheckoutPage({super.key});
@@ -28,7 +28,7 @@ class MerchantCheckoutPage extends StatelessWidget {
         children: [
           // TokoBelanja header (different brand!)
           Container(
-            color: _orange,
+            color: _primary,
             padding: EdgeInsets.fromLTRB(
                 16, MediaQuery.of(context).padding.top + 6, 16, 14),
             child: Row(
@@ -82,7 +82,7 @@ class MerchantCheckoutPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
-                      boxShadow: AppColors.shadowSoft,
+                      boxShadow: AppColors.shadowCard,
                     ),
                     padding:
                         const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
@@ -116,14 +116,14 @@ class MerchantCheckoutPage extends StatelessWidget {
                                       width: 46,
                                       height: 46,
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFFFF1E9),
+                                        color: AppColors.gold.withValues(alpha: 0.1),
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       child: const Center(
                                           child: Icon(
                                               Icons.shopping_bag_outlined,
                                               size: 22,
-                                              color: _orange)),
+                                              color: AppColors.gold)),
                                     ),
                                     const SizedBox(width: 12),
                                     Expanded(
@@ -188,9 +188,9 @@ class MerchantCheckoutPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
-                      boxShadow: AppColors.shadowSoft,
+                      boxShadow: AppColors.shadowCard,
                       border:
-                          Border.all(color: AppColors.primaryLight, width: 1.8),
+                          Border.all(color: AppColors.line2, width: 1.8),
                     ),
                     child: Row(
                       children: [
@@ -215,7 +215,7 @@ class MerchantCheckoutPage extends StatelessWidget {
                           ),
                         ),
                         const Icon(Icons.check_rounded,
-                            size: 20, color: AppColors.primary),
+                            size: 20, color: AppColors.gold),
                       ],
                     ),
                   ),
@@ -227,7 +227,7 @@ class MerchantCheckoutPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
-                      boxShadow: AppColors.shadowSoft,
+                      boxShadow: AppColors.shadowCard,
                     ),
                     child: Column(
                       children: [
@@ -256,7 +256,7 @@ class MerchantCheckoutPage extends StatelessWidget {
                                     fontFamily: 'PlusJakartaSans',
                                     fontSize: 15.5,
                                     fontWeight: FontWeight.w800,
-                                    color: _orange,
+                                    color: AppColors.gold,
                                   )),
                             ],
                           ),

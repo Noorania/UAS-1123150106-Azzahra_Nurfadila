@@ -29,10 +29,10 @@ class AccountPage extends StatelessWidget {
                 // Header
                 Container(
                   decoration: const BoxDecoration(
-                    gradient: AppColors.primaryGradient,
+                    gradient: AppColors.goldGradient,
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(28),
-                      bottomRight: Radius.circular(28),
+                      bottomLeft: Radius.circular(24),
+                      bottomRight: Radius.circular(24),
                     ),
                   ),
                   padding: EdgeInsets.fromLTRB(
@@ -65,7 +65,7 @@ class AccountPage extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         decoration: BoxDecoration(
-                          color: AppColors.ink.withValues(alpha: 0.06),
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: const Row(
@@ -174,7 +174,7 @@ class AccountPage extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(16),
-                            boxShadow: AppColors.shadowSoft,
+                            boxShadow: AppColors.shadowCard,
                           ),
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -237,7 +237,7 @@ class _Row extends StatelessWidget {
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        padding: const EdgeInsets.all(16),
         child: Row(
           children: [
             FeatureIcon(icon: icon, tone: tone, size: 42, iconSize: 20),

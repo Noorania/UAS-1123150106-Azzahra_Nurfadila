@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Primary Cream (Ubah dari Biru ke Cream 0xFFFFF5E1)
+  // Accent Cream (Luxury Identity)
   static const Color primary = Color(0xFFFFF5E1);
   static const Color primaryLight = Color(0xFFFFFDF5);
   static const Color primaryDark = Color(0xFFEAD8B5);
   static const Color primarySurface = Color(0xFFFFF9EE);
   static const Color primaryBorder = Color(0xFFF5E1C3);
+
+  // Champagne Gold (Primary Interactive)
+  static const Color gold = Color(0xFFCFAF6D);
+  static const Color goldLight = Color(0xFFD9B97A);
+  static const Color goldDark = Color(0xFFB5934F);
 
   // Semantic
   static const Color green = Color(0xFF16A571);
@@ -18,16 +23,16 @@ class AppColors {
   static const Color violet = Color(0xFF7A5AF8);
   static const Color violetSurface = Color(0xFFF0EEFF);
 
-  // Neutral
-  static const Color ink = Color(0xFF0E1726);
-  static const Color slate600 = Color(0xFF4B5E78);
-  static const Color slate500 = Color(0xFF6B7A90);
+  // Neutral (Refined)
+  static const Color ink = Color(0xFF1C1C1C); // Dark charcoal
+  static const Color slate600 = Color(0xFF6B7280); // Medium gray
+  static const Color slate500 = Color(0xFF6B7280); // Medium gray
   static const Color slate400 = Color(0xFF9DABBE);
   static const Color slate300 = Color(0xFFCBD2DD);
   static const Color line = Color(0xFFE8ECF2);
   static const Color line2 = Color(0xFFF3F5F8);
-  static const Color bg = Color(0xFFF6F7F9);
-  static const Color white = Color(0xFFFFFFFF);
+  static const Color bg = Color(0xFFFAFAF8); // Soft off-white
+  static const Color white = Color(0xFFFFFFFF); // Pure white cards
 
   // Gradient
   static const LinearGradient primaryGradient = LinearGradient(
@@ -37,41 +42,49 @@ class AppColors {
     colors: [primaryLight, primary, primaryDark],
   );
 
-  // Shadows
+  static const LinearGradient goldGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    stops: [0.0, 1.0],
+    colors: [goldLight, gold],
+  );
+
+  // Shadows (Soft & Elegant Material 3)
   static List<BoxShadow> shadowCard = [
     BoxShadow(
-      color: Color(0x14000000),
-      blurRadius: 24,
+      color: Color(0x08000000), // Very subtle shadow for pure white cards
+      blurRadius: 16,
       spreadRadius: 0,
       offset: Offset(0, 4),
     ),
   ];
   static List<BoxShadow> shadowSoft = [
     BoxShadow(
-      color: Color(0x0A000000),
-      blurRadius: 12,
+      color: Color(0x05000000),
+      blurRadius: 8,
       spreadRadius: 0,
       offset: Offset(0, 2),
     ),
   ];
   static List<BoxShadow> shadowPrimary = [
     BoxShadow(
-      color: Color(0x1A0E1726), // soft dark shadow based on AppColors.ink
-      blurRadius: 22,
+      color: gold.withOpacity(0.25), // Soft gold shadow
+      blurRadius: 16,
       spreadRadius: 0,
-      offset: Offset(0, 10),
+      offset: Offset(0, 8),
     ),
   ];
 
   // Tone map for FeatureIcon
   static Map<String, List<Color>> tones = {
-    'blue': [primarySurface, primary],
+    'blue': [primarySurface, primaryDark],
+    'gold': [primarySurface, gold],
     'green': [greenSurface, green],
     'amber': [amberSurface, amber],
     'red': [redSurface, red],
     'violet': [violetSurface, violet],
-    'slate': [bg, slate600],
+    'slate': [Colors.white, slate600],
   };
 
-  static List<Color> tone(String name) => tones[name] ?? tones['blue']!;
+  static List<Color> tone(String name) => tones[name] ?? tones['gold']!;
 }

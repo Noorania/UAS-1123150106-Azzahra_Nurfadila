@@ -21,7 +21,7 @@ class TransactionRow extends StatelessWidget {
         if (divider)
           const Divider(height: 1, thickness: 1, color: AppColors.line2, indent: 16),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          padding: const EdgeInsets.all(16),
           child: Row(
             children: [
               FeatureIcon(icon: icon, tone: tone, size: 44, iconSize: 21),

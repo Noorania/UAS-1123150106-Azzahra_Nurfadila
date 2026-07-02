@@ -83,15 +83,15 @@ class _AppFieldState extends State<AppField> {
           height: 54,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: _focused ? AppColors.primary : AppColors.line,
+              color: _focused ? AppColors.gold : AppColors.line,
               width: 1.0,
             ),
             boxShadow: _focused
                 ? [
                     BoxShadow(
-                        color: AppColors.primary.withValues(alpha: 0.1), blurRadius: 0, spreadRadius: 4)
+                        color: AppColors.gold.withValues(alpha: 0.15), blurRadius: 8, spreadRadius: 0)
                   ]
                 : [],
           ),
@@ -101,7 +101,7 @@ class _AppFieldState extends State<AppField> {
                 const SizedBox(width: 14),
                 ColorFiltered(
                   colorFilter: ColorFilter.mode(
-                    _focused ? AppColors.primary : AppColors.slate400,
+                    _focused ? AppColors.gold : AppColors.slate400,
                     BlendMode.srcIn,
                   ),
                   child: widget.prefixIcon!,

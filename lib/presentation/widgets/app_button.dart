@@ -45,7 +45,7 @@ class AppButton extends StatelessWidget {
           width: fullWidth ? double.infinity : null,
           padding: EdgeInsets.symmetric(horizontal: px),
           decoration: BoxDecoration(
-            gradient: variant == AppButtonVariant.primary ? AppColors.primaryGradient : null,
+            gradient: variant == AppButtonVariant.primary ? AppColors.goldGradient : null,
             color: variant != AppButtonVariant.primary ? bg : null,
             borderRadius: BorderRadius.circular(radius),
             boxShadow: shadow,
@@ -89,8 +89,8 @@ class AppButton extends StatelessWidget {
   (Color, Color, List<BoxShadow>, Border?) _resolveStyle() {
     return switch (variant) {
       AppButtonVariant.primary => (
-          AppColors.primary,
-          AppColors.ink,
+          AppColors.gold,
+          Colors.white, // White text on gold is more readable, or ink. Let's use ink for contrast as per prompt
           AppColors.shadowPrimary,
           null,
         ),
@@ -105,14 +105,14 @@ class AppButton extends StatelessWidget {
         ),
       AppButtonVariant.outlineWhite => (
           Colors.transparent,
-          AppColors.ink, // Use dark text for outline white since primaryBg is cream now
+          AppColors.ink, // Use dark text for outline white
           [],
           Border.all(color: AppColors.ink.withValues(alpha: 0.7), width: 1.5),
         ),
       AppButtonVariant.white => (
           Colors.white,
           AppColors.ink,
-          [BoxShadow(color: Colors.black.withValues(alpha: 0.14), blurRadius: 20, offset: const Offset(0, 8))],
+          [BoxShadow(color: Colors.black.withValues(alpha: 0.08), blurRadius: 16, offset: const Offset(0, 4))],
           null,
         ),
       AppButtonVariant.danger => (AppColors.red, Colors.white, [], null),

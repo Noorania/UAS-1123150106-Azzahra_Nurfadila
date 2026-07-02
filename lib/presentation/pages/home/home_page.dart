@@ -56,10 +56,10 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         width: double.infinity,
                         decoration: const BoxDecoration(
-                          gradient: AppColors.primaryGradient,
+                          gradient: AppColors.goldGradient,
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(28),
-                            bottomRight: Radius.circular(28),
+                            bottomLeft: Radius.circular(24),
+                            bottomRight: Radius.circular(24),
                           ),
                         ),
                         padding: EdgeInsets.fromLTRB(
@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                                   width: 42,
                                   height: 42,
                                   decoration: BoxDecoration(
-                                    color: AppColors.ink.withValues(alpha: 0.06),
+                                    color: Colors.white,
                                     borderRadius: BorderRadius.circular(14),
                                   ),
                                   child: const Icon(Icons.notifications_outlined,
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                                     width: 8,
                                     height: 8,
                                     decoration: BoxDecoration(
-                                      color: AppColors.amber,
+                                      color: AppColors.red,
                                       shape: BoxShape.circle,
                                       border: Border.all(color: Colors.white, width: 2),
                                     ),
@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(16),
         boxShadow: AppColors.shadowCard,
       ),
       padding: const EdgeInsets.fromLTRB(18, 18, 18, 8),
@@ -198,19 +198,20 @@ class _HomePageState extends State<HomePage> {
               GestureDetector(
                 onTap: () => context.go('/topup'),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                   decoration: BoxDecoration(
-                    color: AppColors.primarySurface,
+                    color: AppColors.gold,
                     borderRadius: BorderRadius.circular(20),
+                    boxShadow: AppColors.shadowSoft,
                   ),
                   child: const Row(
                     children: [
-                      Icon(Icons.add_rounded, size: 15, color: AppColors.primary),
-                      SizedBox(width: 5),
+                      Icon(Icons.add_rounded, size: 15, color: Colors.white),
+                      SizedBox(width: 6),
                       Text('Isi Saldo',
                           style: TextStyle(
                             fontFamily: 'PlusJakartaSans',
-                            color: AppColors.primary,
+                            color: Colors.white,
                             fontWeight: FontWeight.w700,
                             fontSize: 13,
                           )),
@@ -374,10 +375,10 @@ class _HomePageState extends State<HomePage> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(16),
         boxShadow: AppColors.shadowSoft,
       ),
-      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
       child: GridView.count(
         crossAxisCount: 4,
         shrinkWrap: true,
@@ -416,11 +417,12 @@ class _HomePageState extends State<HomePage> {
           gradient: const LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF0E1726), Color(0xFF21314D)],
+            colors: [Color(0xFF1C1C1C), Color(0xFF2C2C2C)], // Dark elegant gradient
           ),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: AppColors.shadowCard,
         ),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         child: Stack(
           clipBehavior: Clip.none,
           children: [
@@ -432,22 +434,22 @@ class _HomePageState extends State<HomePage> {
                 height: 120,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: const Color(0xFF5B9BFF).withValues(alpha: 0.18),
+                  color: AppColors.gold.withValues(alpha: 0.15),
                 ),
               ),
             ),
             Row(
               children: [
                 Container(
-                  width: 46,
-                  height: 46,
+                  width: 48,
+                  height: 48,
                   decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.12),
-                    borderRadius: BorderRadius.circular(14),
+                    color: Colors.white.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                  child: const Icon(Icons.link_rounded, size: 24, color: Color(0xFF5B9BFF)),
+                  child: const Icon(Icons.shopping_bag_outlined, size: 24, color: AppColors.gold),
                 ),
-                const SizedBox(width: 13),
+                const SizedBox(width: 16),
                 const Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -507,8 +509,8 @@ class _HomePageState extends State<HomePage> {
         Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: AppColors.shadowSoft,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: AppColors.shadowCard,
           ),
           child: txns.isEmpty
               ? const Padding(
