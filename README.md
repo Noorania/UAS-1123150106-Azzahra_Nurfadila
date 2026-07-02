@@ -2,6 +2,13 @@
 
 Sistem e-commerce perhiasan (**Jrb Jewelry**) yang terintegrasi dengan dompet digital (**Dompetku**) lewat mekanisme **deeplink** untuk alur pembayaran antar-aplikasi. Terdiri dari 2 aplikasi Flutter dan 2 backend Go yang berjalan independen.
 
+## 👨‍💻 Pengembang
+
+**Az-zahra Nurfadila Puspita Ayu**
+
+📺 **Video Pembuatan Sistem:**  
+[Link Video Youtube](https://youtu.be/y4SL7c_iPKM)
+
 ## Tentang Project
 
 E-commerce yang mendelegasikan proses pembayaran ke aplikasi dompet digital terpisah — mirip pola integrasi Gopay/OVO/Dana ke merchant app di dunia nyata. Kedua sistem dibangun sebagai dua aplikasi dan dua backend yang sepenuhnya terpisah, dihubungkan lewat deeplink dan callback URL.
@@ -37,10 +44,8 @@ E-commerce yang mendelegasikan proses pembayaran ke aplikasi dompet digital terp
     <td><img src="https://github.com/user-attachments/assets/bc1a116f-ed92-42b6-bbab-ed0456d58dee" width="200" /></td>
   </tr>
   <tr>
-      <td><img src="https://github.com/user-attachments/assets/1d442da0-b2b7-4b43-92b8-a5ce5b5c2c5b" width="200" /></td>
     <td><img src="https://github.com/user-attachments/assets/0dd4c5a0-676a-425a-9f35-948d43e36c32" width="200" /></td>
     <td><img src="https://github.com/user-attachments/assets/b2c606c0-e03c-48dd-9eb3-eeafd400d727" width="200" /></td>
-    <td><img src="https://github.com/user-attachments/assets/5fc3ac42-62c4-4c5d-86b1-4ae4d54cc167" width="200" /></td>
   </tr>
 </table>
 
